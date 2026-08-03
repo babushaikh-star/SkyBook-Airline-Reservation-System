@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>User Dashboard</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static',
+    filename='style.css') }}">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        ✈ SkyBook
+
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">Home</a>
+
+        <a href="/user_logout">
+
+            Logout
+
+        </a>
+
+    </div>
+
+</nav>
+
+<div class="admin-container">
+
+    <h1>
+
+        Welcome,
+        {{ session['user_name'] }}
+
+    </h1>
+
+    <div class="table-section">
+
+        <h2>My Tickets</h2>
+
+        <table>
+
+            <tr>
+
+                <th>ID</th>
+                <th>Flight</th>
+                <th>Seat</th>
+                <th>Passengers</th>
+                <th>Date</th>
+                <th>Price</th>
+                <th>Status</th>
+
+            </tr>
+
+            {% for ticket in tickets %}
+
+            <tr>
+
+                <td>{{ ticket['id'] }}</td>
+
+                <td>{{ ticket['flight_id'] }}</td>
+
+                <td>{{ ticket['seat_number'] }}</td>
+
+                <td>{{ ticket['passengers'] }}</td>
+
+                <td>{{ ticket['travel_date'] }}</td>
+
+                <td>₹{{ ticket['total_price'] }}</td>
+
+                <td>{{ ticket['booking_status'] }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>

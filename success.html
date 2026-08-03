@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Success</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="success-card">
+
+    <h1>✅ Ticket Booked Successfully</h1>
+
+    <div class="ticket-box">
+
+        <p>
+            <strong>Name:</strong>
+            {{ ticket.name }}
+        </p>
+
+        <p>
+            <strong>Flight ID:</strong>
+            {{ ticket.flight_id }}
+        </p>
+
+        <p>
+            <strong>Seat:</strong>
+            {{ ticket.seat }}
+        </p>
+
+        <p>
+            <strong>Passengers:</strong>
+            {{ ticket.passengers }}
+        </p>
+
+        <p>
+            <strong>Date:</strong>
+            {{ ticket.travel_date }}
+        </p>
+
+        <p>
+            <strong>Total Price:</strong>
+            ₹{{ ticket.total_price }}
+        </p>
+
+    </div>
+
+    <a href="/" class="back-btn">
+
+        Back Home
+
+    </a>
+
+</div>
+
+</body>
+</html>

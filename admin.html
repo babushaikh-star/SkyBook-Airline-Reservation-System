@@ -1,0 +1,213 @@
+<!-- templates/admin.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SkyBook Admin</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            ✈ SkyBook Admin
+
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">Home</a>
+
+            <a href="/logout">Logout</a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ADMIN CONTAINER -->
+
+    <div class="admin-container">
+
+        <h1>Flight Management System</h1>
+
+
+        <!-- ADD FLIGHT -->
+
+        <div class="add-flight-box">
+
+            <h2>Add New Flight</h2>
+
+            <form action="/add_flight"
+                  method="POST">
+
+                <input type="text"
+                       name="flight_name"
+                       placeholder="Flight Name"
+                       required>
+
+                <input type="text"
+                       name="from_city"
+                       placeholder="From City"
+                       required>
+
+                <input type="text"
+                       name="to_city"
+                       placeholder="To City"
+                       required>
+
+                <input type="text"
+                       name="departure_time"
+                       placeholder="10:00 AM"
+                       required>
+
+                <input type="text"
+                       name="arrival_time"
+                       placeholder="12:00 PM"
+                       required>
+
+                <input type="number"
+                       name="price"
+                       placeholder="Ticket Price"
+                       required>
+
+                <button type="submit">
+
+                    Add Flight
+
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- AVAILABLE FLIGHTS -->
+
+        <div class="table-section">
+
+            <h2>Available Flights</h2>
+
+            <table>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Flight</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Departure</th>
+                    <th>Arrival</th>
+                    <th>Price</th>
+                    <th>Action</th>
+
+                </tr>
+
+                {% for flight in flights %}
+
+                <tr>
+
+                    <td>{{ flight['id'] }}</td>
+
+                    <td>{{ flight['flight_name'] }}</td>
+
+                    <td>{{ flight['from_city'] }}</td>
+
+                    <td>{{ flight['to_city'] }}</td>
+
+                    <td>{{ flight['departure_time'] }}</td>
+
+                    <td>{{ flight['arrival_time'] }}</td>
+
+                    <td>₹{{ flight['price'] }}</td>
+
+                    <td>
+
+                        <a href="/delete_flight/{{ flight['id'] }}"
+                           class="delete-btn">
+
+                            Delete
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+
+        <!-- BOOKED TICKETS -->
+
+        <div class="table-section">
+
+            <h2>Booked Tickets</h2>
+
+            <table>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Passenger</th>
+                    <th>Flight ID</th>
+                    <th>Seat</th>
+                    <th>Passengers</th>
+                    <th>Total Price</th>
+                    <th>Date</th>
+                    <th>Status</th>
+
+                </tr>
+
+                {% for ticket in tickets %}
+
+                <tr>
+
+                    <td>{{ ticket['id'] }}</td>
+
+                    <td>{{ ticket['passenger_name'] }}</td>
+
+                    <td>{{ ticket['flight_id'] }}</td>
+
+                    <td>{{ ticket['seat_number'] }}</td>
+
+                    <td>{{ ticket['passengers'] }}</td>
+
+                    <td>₹{{ ticket['total_price'] }}</td>
+
+                    <td>{{ ticket['travel_date'] }}</td>
+
+                    <td>{{ ticket['booking_status'] }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

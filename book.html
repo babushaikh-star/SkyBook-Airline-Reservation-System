@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Book Flight</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="booking-card">
+
+    <h1>Book Flight</h1>
+
+    <h3>{{ flight.flight_name }}</h3>
+
+    <p>
+        {{ flight.from_city }}
+        →
+        {{ flight.to_city }}
+    </p>
+
+    <form action="/book_ticket" method="POST">
+
+        <input type="hidden"
+               name="flight_id"
+               value="{{ flight.id }}">
+
+        <input type="text"
+               name="name"
+               placeholder="Passenger Name"
+               required>
+
+        <input type="text"
+               name="seat_number"
+               placeholder="Seat Number"
+               required>
+
+        <input type="number"
+               name="passengers"
+               placeholder="Passengers"
+               required>
+
+        <input type="date"
+               name="travel_date"
+               required>
+
+        <button type="submit">
+
+            Confirm Booking
+
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
